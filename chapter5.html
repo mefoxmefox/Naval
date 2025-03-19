@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五章 · 资产与所有权 - 纳瓦尔宝典</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .quote-card {
+            transition: all 0.3s ease;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 懒加载图片样式 */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 主题切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="naval-1.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span>返回首页</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold">第五章 · 资产与所有权</h1>
+                </div>
+                <div class="w-24"><!-- 占位，保持标题居中 --></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 fade-in">所有权而非时间</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s">
+                    拥有资产是通往财务自由的关键
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">时间换取金钱的陷阱</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔指出，大多数人陷入了用时间换取金钱的陷阱。他们出售自己的时间，获得薪水，但这种模式有严重的局限性。时间是有限的，你不能同时在多个地方工作，也不能无限延长工作时间。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "你想要拥有股权，而不是按小时出售你的劳动力。你需要拥有一部分业务来获得真正的财务自由。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        真正的财富来自于拥有资产，而不是出售时间。资产是那些在你睡觉时仍然为你工作的东西，它们可以创造被动收入，让你摆脱时间与收入的直接关联。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">什么是真正的资产？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 资产卡片 1 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-building text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">商业资产</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            拥有企业或企业的一部分（股权）是最强大的资产形式之一。一个良好运营的企业可以在没有你直接参与的情况下创造价值。
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300">
+                            <li>创业公司股权</li>
+                            <li>小型企业所有权</li>
+                            <li>特许经营权</li>
+                        </ul>
+                    </div>
+
+                    <!-- 资产卡片 2 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-laptop-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">产品和知识产权</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            创造一次但可以多次销售的产品是强大的资产。这包括软件、书籍、音乐、专利等可以复制且边际成本接近零的产品。
+                        </p>
+                        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-300">
+                            <li>软件和应用程序</li>
+                            <li>电子书和课程</li>
+                            <li>专利和版权</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">如何积累资产</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        积累资产需要时间和策略。纳瓦尔提供了几种方法：
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>创造或购买</strong> - 你可以创造新的资产（如创业公司或产品）或购买现有资产（如股票或房地产）</li>
+                        <li class="mb-2"><strong>转换时间为资产</strong> - 使用你的工作时间创造长期资产，而不仅仅是换取薪水</li>
+                        <li class="mb-2"><strong>利用特殊知识</strong> - 使用你的独特技能和知识创造难以复制的资产</li>
+                        <li class="mb-2"><strong>应用杠杆</strong> - 使用代码、媒体和资本放大你的资产创造能力</li>
+                        <li class="mb-2"><strong>持续再投资</strong> - 将资产产生的收入再投资于新资产，形成复利效应</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        积累资产是一个长期过程，需要耐心和持续努力。最初的进展可能很慢，但随着时间的推移，资产的复合效应会变得越来越明显。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">所有权的力量</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔强调所有权的重要性。在现代经济中，拥有少量但有价值的东西比拥有大量平庸的东西更重要。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "宁愿拥有一家伟大企业的一小部分，也不要拥有一家平庸企业的全部。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        所有权给予你对资产的控制权和决策权，同时也让你分享资产增长的收益。在选择所有权时，要关注质量而非数量，关注长期价值而非短期收益。
+                    </p>
+                    <h3 class="text-xl font-semibold mb-3">所有权的形式</h3>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>直接所有权</strong> - 完全拥有和控制资产</li>
+                        <li class="mb-2"><strong>部分所有权</strong> - 通过股权、合伙关系等拥有部分资产</li>
+                        <li class="mb-2"><strong>知识产权</strong> - 拥有创意、发明和创作的权利</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-primary-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="theme-script.js"></script>
+</body>
+</html>

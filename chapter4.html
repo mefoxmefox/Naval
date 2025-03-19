@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四章 · 人际关系的价值 - 纳瓦尔宝典</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .quote-card {
+            transition: all 0.3s ease;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 懒加载图片样式 */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 主题切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="naval-1.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span>返回首页</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold">第四章 · 人际关系的价值</h1>
+                </div>
+                <div class="w-24"><!-- 占位，保持标题居中 --></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 fade-in">与聪明人合作</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s">
+                    你的网络决定了你的净资产
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">人际关系的重要性</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔强调，与谁一起工作和生活是人生中最重要的决定之一。你的网络不仅影响你的机会和资源，还会塑造你的思维方式和价值观。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "与聪明、有活力、道德高尚的人一起工作。你会发现，长期来看，这是最重要的决定因素。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        高质量的人际关系是创造财富和幸福的关键因素。通过与优秀的人合作，你可以获得更多机会，学习新技能，并建立有价值的联系。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">如何选择合作伙伴</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 合作伙伴卡片 1 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">聪明</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            寻找那些能够快速学习、理解复杂概念并有创造性思维的人。聪明不仅仅是智商高，还包括拥有独特视角和解决问题的能力。
+                        </p>
+                    </div>
+
+                    <!-- 合作伙伴卡片 2 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-bolt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">有活力</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            与那些充满热情、积极主动且有强烈执行力的人合作。能量是会传染的，高能量的人可以激励团队并推动项目向前发展。
+                        </p>
+                    </div>
+
+                    <!-- 合作伙伴卡片 3 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-balance-scale text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高尚品德</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            诚实、正直和可靠是长期合作的基础。与道德高尚的人合作可以建立信任，减少冲突，并创造健康的工作环境。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">建立高质量网络的策略</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        建立高质量的人际网络需要时间和策略。纳瓦尔提供了一些建议：
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>提供价值</strong> - 首先考虑你能为他人提供什么，而不是你能从他们那里得到什么</li>
+                        <li class="mb-2"><strong>真诚交流</strong> - 建立真实、深入的关系，而不是肤浅的社交网络</li>
+                        <li class="mb-2"><strong>长期思维</strong> - 关注长期关系，而不是短期利益</li>
+                        <li class="mb-2"><strong>选择性社交</strong> - 宁愿有少数高质量的关系，也不要有大量低质量的联系</li>
+                        <li class="mb-2"><strong>持续学习</strong> - 不断提升自己，吸引类似的人</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        记住，你是你最常接触的五个人的平均值。选择与比你更聪明、更有活力、更有道德的人在一起，你会自然而然地向他们看齐。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">网络效应与复合增长</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        高质量的人际网络具有网络效应，随着时间的推移，其价值会呈指数级增长。当你的网络中的人相互连接并创造价值时，整个网络的价值会大大超过其各部分的总和。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "你的网络就是你的净资产。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        投资于你的人际关系就像投资于复利资产。随着时间的推移，这些关系会带来越来越多的机会、知识和资源。这种复合效应使得人际网络成为最有价值的资产之一。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">远程工作时代的人际关系</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        在远程工作日益普遍的时代，建立和维护高质量的人际关系面临新的挑战和机遇。纳瓦尔提供了一些在数字时代建立有意义关系的建议：
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>有意识地创造连接</strong> - 在远程环境中，社交互动不会自然发生，需要有意识地创造</li>
+                        <li class="mb-2"><strong>利用数字工具</strong> - 充分利用视频会议、协作平台和社交媒体来维持关系</li>
+                        <li class="mb-2"><strong>定期深度交流</strong> - 安排定期的一对一深度交谈，而不仅仅是工作会议</li>
+                        <li class="mb-2"><strong>线上线下结合</strong> - 在可能的情况下，安排面对面的会面来加强线上建立的关系</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        远程工作虽然带来了挑战，但也创造了与全球人才合作的机会。通过有意识地培养关系，你可以建立一个不受地理限制的强大网络。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-primary-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="theme-script.js"></script>
+</body>
+</html>

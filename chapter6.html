@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第六章 · 时间与复利 - 纳瓦尔宝典</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .quote-card {
+            transition: all 0.3s ease;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 懒加载图片样式 */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 主题切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="naval-1.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span>返回首页</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold">第六章 · 时间与复利</h1>
+                </div>
+                <div class="w-24"><!-- 占位，保持标题居中 --></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 fade-in">长期思维</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s">
+                    复利不仅适用于金钱，也适用于关系和知识
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">时间的价值</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔认为，时间是我们最宝贵的资源。与金钱不同，时间是不可再生的资源，一旦消耗就无法恢复。因此，如何使用时间是人生中最重要的决策之一。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "你如何度过时间，就是你如何度过生命。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        明智地使用时间意味着投资于那些能够产生长期回报的活动，而不是仅仅追求短期满足。这包括学习新技能、建立关系网络、创造资产和培养健康习惯。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">复利的力量</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 复利卡片 1 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">财务复利</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            投资的回报随着时间的推移而增长，因为收益会产生新的收益。这就是为什么早期投资如此重要，即使金额很小。
+                        </p>
+                    </div>
+
+                    <!-- 复利卡片 2 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">知识复利</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            学习是累积的过程。新知识建立在已有知识的基础上，使你能够更快地学习和理解新概念，创造指数级的成长。
+                        </p>
+                    </div>
+
+                    <!-- 复利卡片 3 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">关系复利</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            长期、深入的关系会随着时间的推移而增值。信任和理解需要时间建立，但一旦建立，就会产生持续的价值和机会。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">长期思维的实践</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        培养长期思维需要克服人类的短期偏好。纳瓦尔提供了一些实践长期思维的方法：
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>延迟满足</strong> - 学会推迟即时满足，以获取更大的长期回报</li>
+                        <li class="mb-2"><strong>思考决策的长期后果</strong> - 评估决策时，考虑10年或更长时间后的影响</li>
+                        <li class="mb-2"><strong>建立一致性</strong> - 确保你的短期行动与长期目标一致</li>
+                        <li class="mb-2"><strong>减少噪音</strong> - 避免被短期新闻和市场波动分散注意力</li>
+                        <li class="mb-2"><strong>耐心</strong> - 理解真正有价值的事物需要时间才能发展和成熟</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        长期思维不仅适用于投资决策，也适用于职业选择、关系建立和个人发展。它是创造持久价值和实现真正成功的关键。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">时间的分配</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔强调，如何分配时间比如何分配金钱更重要。他建议将时间投资于以下几个方面：
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "你的时间应该花在创造资产上，而不是出售时间换取金钱。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <h3 class="text-xl font-semibold mb-3">时间分配的优先级</h3>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>创造资产</strong> - 将时间用于创建能够持续产生价值的东西</li>
+                        <li class="mb-2"><strong>学习</strong> - 投资于获取新知识和技能，特别是那些具有长期价值的</li>
+                        <li class="mb-2"><strong>健康</strong> - 保持身体健康是享受长寿和高质量生活的基础</li>
+                        <li class="mb-2"><strong>关系</strong> - 培养深厚、有意义的关系，而不是肤浅的社交网络</li>
+                        <li class="mb-2"><strong>反思和冥想</strong> - 给自己时间思考和处理信息，而不是不断地消费新信息</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        通过明智地分配时间，我们可以在长期内创造更多价值，并过上更加充实和有意义的生活。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-primary-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="theme-script.js"></script>
+</body>
+</html>

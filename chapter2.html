@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章 · 创造财富的工具 - 纳瓦尔宝典</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .quote-card {
+            transition: all 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 懒加载图片样式 */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 主题切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="naval-1.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span>返回首页</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold">第二章 · 创造财富的工具</h1>
+                </div>
+                <div class="w-24"><!-- 占位，保持标题居中 --></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <div class="text-center">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 fade-in">杠杆的力量</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s">
+                    在现代社会，最强大的杠杆是代码和媒体
+                </p>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">什么是杠杆？</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        纳瓦尔认为，杠杆是放大你的判断力和行动的工具。在现代社会，最强大的杠杆不再是劳动力或资本，而是代码和媒体。这些工具可以让你的工作在你睡觉或度假时仍然产生价值。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "给我一个足够长的杠杆和一个支点，我就能撬动地球。" — 阿基米德
+                    </blockquote>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        杠杆是创造财富的关键工具。没有杠杆，你的产出将永远受限于你的时间和体力。但有了杠杆，你可以创造出远超个人能力的价值。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">现代杠杆的形式</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 杠杆卡片 1 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">代码</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            代码是最强大的杠杆之一。它可以自动化重复性任务，扩展你的能力，并在你不工作时继续为你创造价值。
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            无边际成本的复制与分发
+                        </div>
+                    </div>
+
+                    <!-- 杠杆卡片 2 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-bullhorn text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">媒体</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            媒体（包括写作、视频、播客等）可以将你的思想传播给数百万人，而无需你亲自出现。它是扩大影响力的强大工具。
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            思想的规模化传播
+                        </div>
+                    </div>
+
+                    <!-- 杠杆卡片 3 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-dollar-sign text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">资本</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            资本是传统的杠杆形式。它可以雇佣人才、购买设备和扩大业务规模。在现代社会，资本变得更加民主化和可获取。
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            传统但依然强大的工具
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">杠杆的未来趋势</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        随着技术的发展，杠杆的形式和可获取性正在不断演变。纳瓦尔预测了几个重要趋势：
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300">
+                        <li class="mb-2"><strong>人工智能</strong> - AI将成为新的强大杠杆，它结合了代码和媒体的特性，可以自动化更复杂的任务</li>
+                        <li class="mb-2"><strong>去中心化金融</strong> - 区块链技术使资本杠杆变得更加民主化和可获取</li>
+                        <li class="mb-2"><strong>远程协作工具</strong> - 使人力杠杆不再受地理位置限制</li>
+                        <li class="mb-2"><strong>无代码工具</strong> - 使代码杠杆对非程序员也变得可用</li>
+                    </ul>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        未来的赢家将是那些能够快速适应和利用这些新形式杠杆的人。保持学习和实验的心态，将帮助你发现和利用新兴的杠杆形式。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">如何获取和应用杠杆</h2>
+                <div class="prose prose-blue max-w-none dark:prose-dark">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        获取和应用杠杆需要战略性思考和持续学习。以下是纳瓦尔建议的几个关键步骤：
+                    </p>
+                    <h3 class="text-xl font-semibold mb-3">1. 学习基础技能</h3>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        无论是编程、写作还是投资，都需要掌握基础知识和技能。这些技能是你应用杠杆的基础。
+                    </p>
+                    <blockquote class="border-l-4 border-primary-500 pl-4 py-2 mb-4 italic text-gray-700 dark:text-gray-300">
+                        "学习编程就像获得了一个新的超能力。" — 纳瓦尔·拉维坎特
+                    </blockquote>
+                    <h3 class="text-xl font-semibold mb-3">2. 寻找杠杆点</h3>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        识别你的工作或项目中可以应用杠杆的地方。哪些任务是重复性的？哪些工作可以自动化？哪些想法可以规模化传播？
+                    </p>
+                    <h3 class="text-xl font-semibold mb-3">3. 持续实验</h3>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        尝试不同形式的杠杆，看哪些最适合你的技能和目标。不要害怕失败，每次实验都是学习的机会。
+                    </p>
+                    <h3 class="text-xl font-semibold mb-3">4. 组合多种杠杆</h3>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
+                        最强大的效果往往来自于多种杠杆的组合。例如，使用代码创建产品，通过媒体推广它，然后用资本扩大规模。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 section">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+                <h2 class="text-2xl font-bold mb-6">实际应用案例</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 案例卡片 1 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-laptop-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">独立开发者</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            一个独立开发者创建了一个SaaS产品，通过自动化解决特定行业问题。他使用代码作为杠杆，一次性工作可以为无数客户服务，实现被动收入。
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            代码杠杆的典型应用
+                        </div>
+                    </div>
+
+                    <!-- 案例卡片 2 -->
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-podcast text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">内容创作者</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            一位思想领袖通过播客和写作分享专业知识，建立了庞大的受众群体。她的想法可以同时影响数百万人，并为她带来多种收入来源。
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            媒体杠杆的成功案例
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <!-- 移除了版权信息 -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-primary-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 主题切换
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查系统偏好
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+        
+        // 检查本地存储
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        } else if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // 滚动动画
+        const sections = document.querySelectorAll('.section');
+        const backToTop = document.getElementById('back-to-top');
+        
+        function checkScroll() {
+            // 显示/隐藏返回顶部按钮
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+            
+            // 滚动动画
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // 初始检查
+        checkScroll();
+        
+        // 滚动监听
+        window.addEventListener('scroll', checkScroll);
+        
+        // 返回顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

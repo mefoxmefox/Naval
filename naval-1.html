@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纳瓦尔宝典：财富和幸福指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .quote-card {
+            transition: all 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 懒加载图片样式 */
+        img.lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        img.lazy.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 主题切换按钮 -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold">纳瓦尔宝典</h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#wealth" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">财富</a>
+                    <a href="#happiness" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">幸福</a>
+                    <a href="#philosophy" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">哲学</a>
+                    <a href="#decisions" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">决策</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#wealth" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">财富</a>
+                <a href="#happiness" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">幸福</a>
+                <a href="#philosophy" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">哲学</a>
+                <a href="#decisions" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">决策</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-primary-600 to-blue-700 dark:from-primary-900 dark:to-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 fade-in">纳瓦尔宝典</h1>
+                <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s">
+                    财富与幸福的指南：纳瓦尔·拉维坎特的智慧精华
+                </p>
+                <div class="mt-10 fade-in" style="animation-delay: 0.4s">
+                    <a href="#wealth" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-blue-50 transition-colors duration-300">
+                        开始阅读
+                        <i class="fas fa-arrow-down ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent"></div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- 财富部分 -->
+        <section id="wealth" class="mb-24 section">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">财富的智慧</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    创造财富不是关于金钱，而是关于自由和创造力
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 财富卡片 1 -->
+                <a href="chapter1.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-rocket text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">追求财务自由</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "追求财富不是为了买奢侈品，而是为了获得自由和控制自己时间的能力。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第一章 · 财富的定义
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 财富卡片 2 -->
+                <a href="chapter2.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">杠杆的力量</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "在现代社会，最强大的杠杆是代码和媒体。代码可以工作，而你睡觉；媒体可以工作，而你度假。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第二章 · 创造财富的工具
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 财富卡片 3 -->
+                <a href="chapter3.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">特殊知识</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "寻找那些无法被外包或自动化的工作，这些工作通常需要判断力、责任感和创造力。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第三章 · 独特技能的价值
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 财富卡片 4 -->
+                <a href="chapter4.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">与聪明人合作</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "与聪明、有活力、道德高尚的人一起工作。你会发现，长期来看，这是最重要的决定因素。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第四章 · 人际关系的价值
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 财富卡片 5 -->
+                <a href="chapter5.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-hand-holding-usd text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">所有权而非时间</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "你想要拥有股权，而不是按小时出售你的劳动力。你需要拥有一部分业务来获得真正的财务自由。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第五章 · 资产与所有权
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 财富卡片 6 -->
+                <a href="chapter6.html" class="block">
+                    <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                        <div class="text-primary-500 dark:text-primary-400 mb-4">
+                            <i class="fas fa-seedling text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">长期思维</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            "复利不仅适用于金钱，也适用于关系和知识。保持长期视角，耐心等待复利效应。"
+                        </p>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            第六章 · 时间与复利
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 幸福部分 -->
+        <section id="happiness" class="mb-24 section">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">幸福的智慧</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    幸福不是一种目标，而是一种技能和选择
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- 幸福图表 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <h3 class="text-xl font-semibold mb-6">幸福的三大支柱</h3>
+                    <div class="space-y-4">
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        内心平静
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        90%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 text-xs flex rounded bg-gray-200 dark:bg-gray-700">
+                                <div style="width: 90%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary-500"></div>
+                            </div>
+                        </div>
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        健康身体
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        85%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 text-xs flex rounded bg-gray-200 dark:bg-gray-700">
+                                <div style="width: 85%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary-500"></div>
+                            </div>
+                        </div>
+                        <div class="relative pt-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        有意义的关系
+                                    </span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-semibold inline-block text-gray-800 dark:text-gray-200">
+                                        80%
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 text-xs flex rounded bg-gray-200 dark:bg-gray-700">
+                                <div style="width: 80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-gray-600 dark:text-gray-300 text-sm">
+                        纳瓦尔认为，真正的幸福来自于内心平静、健康的身体和有意义的人际关系。这三个方面相互支持，共同构成了持久幸福的基础。
+                    </p>
+                </div>
+
+                <!-- 幸福引言 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-center">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-quote-left text-3xl"></i>
+                    </div>
+                    <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-6">
+                        幸福是内心的平静状态，它来自于不再希望改变过去，不再担心未来，只是完全活在当下。
+                    </blockquote>
+                    <div class="text-right">
+                        <span class="text-gray-500 dark:text-gray-400">— 纳瓦尔·拉维坎特</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 幸福卡片 1 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-heart text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">欲望的陷阱</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "欲望是痛苦的根源。每一个新的欲望都是一个新的负担。学会减少欲望，而不是增加收入。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第七章 · 欲望与满足
+                    </div>
+                </div>
+
+                <!-- 幸福卡片 2 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-peace text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">冥想的力量</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "冥想不是你做的事情，而是你停止做的事情。你停止判断，停止思考，只是观察。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第八章 · 内心平静的实践
+                    </div>
+                </div>
+
+                <!-- 幸福卡片 3 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-running text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">身体健康</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "健康的身体是幸福的基础。没有健康，一切都变得困难。优先考虑睡眠、营养和运动。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第九章 · 健康与活力
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 哲学部分 -->
+        <section id="philosophy" class="mb-24 section">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">哲学思考</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    深刻的思想和生活原则
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">生活哲学的核心</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-6">
+                            纳瓦尔的哲学融合了古代智慧与现代思想，强调个人责任、理性思考和持续学习。他的思想既实用又深刻，帮助人们在复杂世界中找到清晰的方向。
+                        </p>
+                        <div class="flex space-x-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                理性思考
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
+                                终身学习
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                                独立思考
+                            </span>
+                        </div>
+                    </div>
+                    <div class="relative h-64 md:h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-xl opacity-20 dark:opacity-40"></div>
+                        <div class="relative p-6 md:p-8">
+                            <blockquote class="text-xl md:text-2xl font-medium text-gray-800 dark:text-gray-200 italic">
+                                "人生最重要的技能是学会如何思考。没有人能教你如何思考。你必须通过阅读、体验和反思来学习。"
+                            </blockquote>
+                            <div class="mt-4 text-right text-gray-600 dark:text-gray-400">
+                                — 纳瓦尔·拉维坎特
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 哲学卡片 1 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-book text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">阅读的重要性</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "我宁愿读少量伟大的书籍，反复阅读，而不是读很多平庸的书。伟大的书籍包含了人类最深刻的思想。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十章 · 知识与学习
+                    </div>
+                </div>
+
+                <!-- 哲学卡片 2 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-balance-scale text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">道德与伦理</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "长期来看，诚实总是最好的策略。诚实不仅仅是不说谎，还包括面对现实，不欺骗自己。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十一章 · 诚实与伦理
+                    </div>
+                </div>
+
+                <!-- 哲学卡片 3 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-user-friends text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">社会与关系</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "与积极、理性、有道德的人在一起。你会发现，你的思想和行为会逐渐向他们靠拢。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十二章 · 社交与人际关系
+                    </div>
+                </div>
+
+                <!-- 哲学卡片 4 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">心智模型</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "学习基本的心智模型，特别是来自数学、物理和进化生物学的模型。它们将帮助你理解世界的运作方式。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十三章 · 思维工具
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 决策部分 -->
+        <section id="decisions" class="mb-24 section">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">明智决策</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    如何在复杂世界中做出更好的选择
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+                <h3 class="text-2xl font-bold mb-6">纳瓦尔的决策框架</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-900 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">决策原则</th>
+                                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-900 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">描述</th>
+                                <th class="px-6 py-3 bg-gray-50 dark:bg-gray-900 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">应用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">长期思维</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">考虑决策的长期后果，而不仅仅是短期收益</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">职业选择、投资、重要关系</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">第一性原理</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">从基本真理出发思考问题，而不是类比或传统</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">创新、解决复杂问题、挑战常规</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">概率思维</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">考虑多种可能的结果及其概率，而不是二元思维</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">风险评估、投资决策、战略规划</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">反向思考</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">思考如何避免失败，而不仅仅是如何成功</td>
+                                <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">风险管理、系统设计、生活规划</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 决策卡片 1 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-chess text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">游戏理论</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "在做决策时，考虑其他人的激励机制和可能的反应。理解游戏理论可以帮助你预测结果并做出更明智的选择。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十四章 · 策略思维
+                    </div>
+                </div>
+
+                <!-- 决策卡片 2 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-dice text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">机会成本</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "每一个'是'都意味着对其他事情说'不'。明智地选择你的'是'，因为你的时间和注意力是有限的资源。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十五章 · 资源分配
+                    </div>
+                </div>
+
+                <!-- 决策卡片 3 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-compass text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">内在指南针</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "发展你的内在指南针。学会倾听你的直觉，但同时用理性思考来检验它。最好的决策往往是直觉和理性的结合。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十六章 · 直觉与理性
+                    </div>
+                </div>
+
+                <!-- 决策卡片 4 -->
+                <div class="quote-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div class="text-primary-500 dark:text-primary-400 mb-4">
+                        <i class="fas fa-mountain text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">选择困难</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        "如果你在两个选择之间犹豫不决，选择更困难的那个。困难的道路通常会带来更多成长和回报。"
+                    </p>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        第十七章 · 面对挑战
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 总结部分 -->
+        <section class="mb-24 section">
+            <div class="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl">
+                <h2 class="text-3xl font-bold mb-6 text-center">纳瓦尔的核心智慧</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                        <div class="text-primary-500 dark:text-primary-400 text-center mb-4">
+                            <i class="fas fa-star text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">寻求真理</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            不断学习，独立思考，追求真相而非舒适。真理是通往智慧和成功的基础。
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                        <div class="text-primary-500 dark:text-primary-400 text-center mb-4">
+                            <i class="fas fa-leaf text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">内心平静</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            幸福来自内心，而非外部条件。学会控制自己的思想和欲望，培养内心的平静。
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
+                        <div class="text-primary-500 dark:text-primary-400 text-center mb-4">
+                            <i class="fas fa-rocket text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-center">创造价值</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            真正的财富来自于为他人创造价值。寻找你的独特技能和知识，用它们解决有意义的问题。
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        纳瓦尔的智慧不仅仅是关于如何获取财富，更是关于如何过上有意义、平静和充实的生活。通过结合古老智慧与现代思想，他提供了一个全面的框架，帮助我们在复杂的世界中导航。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">关于作者</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        纳瓦尔·拉维坎特（Naval Ravikant）是一位企业家、投资者、思想家和现代哲学家。他是AngelList的创始人，也是众多科技公司的早期投资者。纳瓦尔以其深刻的思想和对财富、幸福、决策和生活哲学的独特见解而闻名。
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://twitter.com/naval" target="_blank" class="text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400 transition-colors" aria-label="Twitter">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://nav.al" target="_blank" class="text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400 transition-colors" aria-label="个人网站">
+                            <i class="fas fa-globe text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <h3 class="text-xl font-bold mb-4">作者信息</h3>
+                    <p class="text-gray-600 dark:text-gray-300">作者姓名: 纳瓦尔·拉维坎特</p>
+                    <p class="text-gray-600 dark:text-gray-300">社交媒体: <a href="https://twitter.com/naval" target="_blank" class="text-primary-600 dark:text-primary-400 hover:underline">Twitter/X</a></p>
+                    <p class="text-gray-600 dark:text-gray-300 mt-6">© 2025 纳瓦尔宝典中文版精华摘录 著作权归原作者所有 谨以此向纳瓦尔致敬</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full bg-primary-500 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 主题切换
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查系统偏好
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+        
+        // 检查本地存储
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        } else if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // 滚动动画
+        const sections = document.querySelectorAll('.section');
+        const backToTop = document.getElementById('back-to-top');
+        
+        function checkScroll() {
+            // 显示/隐藏返回顶部按钮
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+            
+            // 滚动动画
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // 初始检查
+        checkScroll();
+        
+        // 滚动监听
+        window.addEventListener('scroll', checkScroll);
+        
+        // 返回顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 懒加载功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
+            
+            if ('IntersectionObserver' in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            if (lazyImage.dataset.srcset) {
+                                lazyImage.srcset = lazyImage.dataset.srcset;
+                            }
+                            lazyImage.classList.remove('lazy');
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // 回退方案，为不支持IntersectionObserver的浏览器
+                let active = false;
+                
+                const lazyLoad = function() {
+                    if (active === false) {
+                        active = true;
+                        
+                        setTimeout(function() {
+                            lazyImages.forEach(function(lazyImage) {
+                                if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== 'none') {
+                                    lazyImage.src = lazyImage.dataset.src;
+                                    if (lazyImage.dataset.srcset) {
+                                        lazyImage.srcset = lazyImage.dataset.srcset;
+                                    }
+                                    lazyImage.classList.remove('lazy');
+                                    
+                                    lazyImages = lazyImages.filter(function(image) {
+                                        return image !== lazyImage;
+                                    });
+                                    
+                                    if (lazyImages.length === 0) {
+                                        document.removeEventListener('scroll', lazyLoad);
+                                        window.removeEventListener('resize', lazyLoad);
+                                        window.removeEventListener('orientationchange', lazyLoad);
+                                    }
+                                }
+                            });
+                            
+                            active = false;
+                        }, 200);
+                    }
+                };
+                
+                document.addEventListener('scroll', lazyLoad);
+                window.addEventListener('resize', lazyLoad);
+                window.addEventListener('orientationchange', lazyLoad);
+                lazyLoad();
+            }
+        });
+    </script>
+</body>
+</html>
